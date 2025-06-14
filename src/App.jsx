@@ -44,12 +44,25 @@ function App() {
     setGraduationYear(event.target.value);
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setStudents([...students, {
+      "fullName": fullName,
+      "email": email,
+      "phone": phoneNumber,
+      "program": program,
+      "image": imageUrl,
+      "graduationYear": graduationYear,
+      "graduated": graduated
+    }]);
+  }
+
   return (
     <div className="App pt-20">
       <Navbar />
 
       {/* FORM */}
-      <form>
+      <form onSubmit={handleSubmit}>
         <span>Add a Student</span>
         <div>
           <label>
@@ -101,7 +114,7 @@ function App() {
 
           <label>
             Graduated
-            <input name="graduated" type="checkbox" checked={graduated ? true : false} onChange={handleGraduated} />
+            <input name="graduated" type="checkbox" checked={graduated} onChange={handleGraduated} />
           </label>
 
           <button type="submit">Add Student</button>
